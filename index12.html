@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>To'yga Taklifnoma</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; position: relative; box-sizing: border-box; }
+        .bg-video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
+        .bg-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: -1; }
+        .music-btn { position: fixed; top: 20px; right: 20px; z-index: 100; background-color: rgba(115, 81, 24, 0.8); border: 2px solid #ffffff; color: white; width: 45px; height: 45px; border-radius: 50%; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); outline: none; }
+        .rotate { animation: rotation 3s infinite linear; }
+        @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .list-card { width: 100%; max-width: 450px; background-color: rgba(255, 255, 255, 0.35); backdrop-filter: blur(6px); padding: 25px 20px; text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); border-radius: 18px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.4); }
+        .list-1 { padding: 35px 20px; }
+        .title { font-size: 1.2rem; color: #111; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; font-weight: bold; }
+        .names { font-size: 2.2rem; font-weight: bold; color: #735118; margin: 20px 0; }
+        .gallery-container { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 5px; }
+        .gallery-item { flex: 0 0 88%; scroll-snap-align: start; height: 230px; border-radius: 12px; object-fit: cover; }
+        .countdown { display: flex; justify-content: center; gap: 8px; }
+        .time-box { background-color: #735118; color: white; padding: 10px; border-radius: 10px; flex: 1; max-width: 70px; }
+        .time-box span { display: block; font-size: 1.4rem; font-weight: bold; }
+        .map-button { display: block; background-color: #735118; color: white; text-decoration: none; padding: 12px; border-radius: 30px; font-weight: bold; margin-top: 15px; }
+        /* Telegram tugmalari uslubi */
+        .rsvp-btn { display: block; width: 85%; padding: 14px; margin: 10px auto; border-radius: 25px; text-decoration: none; font-weight: bold; color: white; font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="bg-video-container"><video autoplay loop muted playsinline><source src="70481DB94CA55AC1E0A46A0231CA5A9A_video_dashinit.mp4" type="video/mp4"></video></div>
+    <div class="bg-overlay"></div>
+    <audio id="myAudio" loop><source src="musiqa.mp3" type="audio/mpeg"></audio>
+    <button class="music-btn" id="musicToggleBtn">🔈</button>
+
+    <div class="list-card list-1">
+        <div class="title">Taklifnoma</div>
+        <div class="names">Manuchehr & Muxlisa</div>
+        <p>Hayotimizning eng go'zal kunida sizni kutamiz!</p>
+    </div>
+
+    <div class="list-card">
+        <div class="gallery-container">
+            <img src="rasm1.jpg" class="gallery-item">
+            <img src="rasm2.jpg" class="gallery-item">
+            <img src="rasm3.jpg" class="gallery-item">
+        </div>
+    </div>
+
+    <div class="list-card">
+        <div class="countdown">
+            <div class="time-box"><span id="days">00</span><label>Kun</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Soat</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>Son</label></div>
+        </div>
+    </div>
+
+    <div class="list-card">
+        <div class="location-address">"Diydor shirin" To'yxonasi, Muzrabot tumani</div>
+        <a href="https://maps.app.goo.gl/UQBmGrneHZzgDD8e8" target="_blank" class="map-button">📍 Xaritadan ko'rish</a>
+    </div>
+
+    <!-- ✍️ YENGIL VA ISHLAYDIGAN TELEGRAM TUGMALARI -->
+    <div class="list-card">
+        <h3>Tashrifingizni tasdiqlang:</h3>
+        <a href="https://t.me/manu_1998terdu?text=Assalomu%20alaykum!%20To'yingizga%20ALBATTA%20BORAMAN!%20🎉" class="rsvp-btn" style="background-color: #28a745;">Albatta, boraman 😊</a>
+        <a href="https://t.me/manu_1998terdu?text=Assalomu%20alaykum!%20Afsuski,%20borolmayman.%20Baxtli%20bo'linglar!%20✨" class="rsvp-btn" style="background-color: #dc3545;">Afsuski, bora olmayman 😔</a>
+    </div>
+
+    <script>
+        const weddingDate = new Date("October 21, 2026 18:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        const audio = document.getElementById("myAudio");
+        const musicBtn = document.getElementById("musicToggleBtn");
+        musicBtn.addEventListener("click", function() {
+            if (audio.paused) { audio.play(); musicBtn.innerText = "🎵"; musicBtn.classList.add("rotate"); }
+            else { audio.pause(); musicBtn.innerText = "🔈"; musicBtn.classList.remove("rotate"); }
+        });
+    </script>
+</body>
+</html>
